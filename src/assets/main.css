@@ -6,8 +6,21 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem;
   font-weight: normal;
+}
+
+#app main {
+  max-width: 1028px;
+  width: 100%;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
 }
 
 a,

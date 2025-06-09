@@ -21,11 +21,16 @@ watch(
 
 onMounted(async () => {
   await categoryStore.loadCategories()
+  if (route.params.categorySlug) {
+    categoryStore.categories =
+      categoryStore.getCategoriesByParentId(route.params.categorySlug as string) ?? []
+  }
 })
 </script>
 
 <template>
   <main>
+    <h1 class="text-center text-2xl font-bold mb-4">Catalog</h1>
     <BreadCrumbs />
     <div class="category-list">
       <CategoryCard

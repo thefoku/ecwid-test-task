@@ -38,12 +38,12 @@ watch(
   },
 )
 
-// watch(
-//   () => categoriesStore.isLoaded,
-//   () => {
-//     updateBreadcrumbs()
-//   },
-// )
+watch(
+  () => categoriesStore.categories,
+  () => {
+    updateBreadcrumbs()
+  },
+)
 </script>
 
 <template>
