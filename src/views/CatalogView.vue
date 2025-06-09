@@ -3,7 +3,8 @@ import Button from 'primevue/button'
 import { useCategories } from '@/services/categoryService'
 import { onMounted, watch } from 'vue'
 import { useCategoryStore } from '@/store/useCategoryStore'
-import CategoryCard from '@/components/CategoryCard.vue'
+import CategoryCard from '@/components/CategoryPage/CategoryCard.vue'
+import BreadCrumbs from '@/components/CategoryPage/BreadCrumbs.vue'
 import { useRoute } from 'vue-router'
 
 const { fetchCategories } = useCategories()
@@ -25,6 +26,7 @@ onMounted(async () => {
 
 <template>
   <main>
+    <BreadCrumbs />
     <div class="category-list">
       <CategoryCard
         v-for="category in categoryStore.categories"

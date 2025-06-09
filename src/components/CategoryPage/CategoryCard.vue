@@ -9,7 +9,6 @@ const props = defineProps<{
 }>()
 
 const onCategoryClick = () => {
-  console.log(`Category clicked: ${props.slug}`)
   router.push(`/catalog/${props.slug}`)
 }
 </script>
