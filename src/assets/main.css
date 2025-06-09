@@ -13,6 +13,7 @@
 #app main {
   max-width: 1028px;
   width: 100%;
+  margin-top: 1.5rem;
 }
 
 header {
@@ -21,6 +22,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
+  border-bottom: 1px solid var(--soft-green);
 }
 
 a,
@@ -34,6 +36,7 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    color: hsla(160, 100%, 37%, 0.531);
+    background-color: var(--soft-green);
+    transition: background-color 0.3s ease-in-out;
   }
 }

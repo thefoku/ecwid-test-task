@@ -2,9 +2,10 @@ export function useProducts() {
   const storeId = import.meta.env.VITE_ECWID_STORE_ID
   const TOKEN = import.meta.env.VITE_ECWID_CLIENT_SECRET
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (categoryId: number | null = null) => {
+    const url = `https://app.ecwid.com/api/v3/${storeId}/products${categoryId ? `?category=${categoryId}` : ''}`
     try {
-      const response = await fetch(`https://app.ecwid.com/api/v3/${storeId}/products`, {
+      const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
