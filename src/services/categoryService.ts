@@ -4,9 +4,12 @@ export function useCategories() {
   const storeId = import.meta.env.VITE_ECWID_STORE_ID
   const TOKEN = import.meta.env.VITE_ECWID_CLIENT_SECRET
 
-  const fetchCategories = async () => {
+  const fetchCategories = async (
+    parentId: number | null = null,
+  ): Promise<EcwidCategoriesResponse> => {
+    const url = `https://app.ecwid.com/api/v3/${storeId}/categories${parentId ? `?parent=${parentId}` : ''}`
     try {
-      const response = await fetch(`https://app.ecwid.com/api/v3/${storeId}/categories`, {
+      const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -17,13 +20,15 @@ export function useCategories() {
       }
 
       const data: EcwidCategoriesResponse = await response.json()
-      console.log('Fetched categories:', data)
       return data
     } catch (error) {
       console.error('Error fetching categories:', error)
-      return []
+
+      return {} as EcwidCategoriesResponse
     }
   }
 
-  return { fetchCategories }
+  return {
+    fetchCategories,
+  }
 }

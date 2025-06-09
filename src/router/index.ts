@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'catalog',
       component: () => import('../views/CatalogView.vue'),
     },
+    {
+      path: '/catalog/:categorySlug',
+      name: 'category',
+      component: () => import('../views/CatalogView.vue'),
+    },
   ],
 })
 
