@@ -28,14 +28,28 @@ const onCategoryClick = () => {
   justify-content: center;
   width: 200px;
   height: 200px;
-  padding: 1rem;
+  /* padding: 1rem; */
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: linear-gradient(#e66465, #9198e5);
+  cursor: pointer;
   transition: all 0.3s ease;
 }
-.category-card:hover {
-  box-shadow: 0 0px 8px var(--vt-c-white);
-  cursor: pointer;
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.category-name {
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--vt-c-white);
+  text-shadow: 1px 1px black;
+  transition: all 0.3s ease;
+}
+.category-card:hover .category-name {
+  transform: translateY(-8px) translateZ(0);
 }
 </style>
