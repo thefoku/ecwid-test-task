@@ -18,8 +18,9 @@ const route = useRoute()
 
 watch(
   () => route.params.categorySlug,
-  (newSlug) => {
+  async (newSlug) => {
     categoryStore.categories = categoryStore.getCategoriesByParentId(newSlug as string) ?? [] // maybe search by slug?
+    await productStore.loadProducts(newSlug as string)
   },
 )
 
@@ -29,8 +30,7 @@ onMounted(async () => {
     categoryStore.categories =
       categoryStore.getCategoriesByParentId(route.params.categorySlug as string) ?? []
   }
-
-  await productStore.loadProducts()
+  await productStore.loadProducts(route.params.categorySlug as string)
 })
 </script>
 
@@ -69,7 +69,7 @@ onMounted(async () => {
       label="Load products"
       outlined
       severity="secondary"
-      @click="console.log(productStore.loadProducts())"
+      @click="console.log(productStore.currentPageProducts)"
     />
   </main>
 </template>

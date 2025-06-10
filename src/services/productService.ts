@@ -16,7 +16,6 @@ export function useProducts() {
       }
 
       const data = await response.json()
-      console.log('Fetched products:', data)
       return data
     } catch (error) {
       console.error('Error fetching products:', error)

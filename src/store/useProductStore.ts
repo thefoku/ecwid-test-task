@@ -3,9 +3,12 @@ import type { EcwidProduct, ProductCardItem } from '@/types/ecwid'
 import { parseProductCards } from '@/utils/Catalog/parseEcwidProducts'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useCategoryStore } from './useCategoryStore'
 
 export const useProductStore = defineStore('product', () => {
   const { fetchProducts } = useProducts()
+
+  const { getCategoryIdBySlug } = useCategoryStore()
 
   const products = ref<EcwidProduct[]>([])
   const allProducts = ref<EcwidProduct[]>([])
@@ -14,17 +17,14 @@ export const useProductStore = defineStore('product', () => {
   const error = ref<string | null>(null)
 
   async function loadProducts(
-    categoryId: number | null = null,
+    currentSlug: string | null | undefined = null,
   ): Promise<EcwidProduct[] | undefined> {
-    if (products.value.length > 0) return
-
     loading.value = true
     error.value = null
-
+    const categoryId = typeof currentSlug === 'string' ? getCategoryIdBySlug(currentSlug) : null
     try {
       const data = await fetchProducts(categoryId)
       if ('items' in data) {
-        console.log('Fetched products:', data.items)
         products.value = data.items
         currentPageProducts.value = parseProductCards(data.items)
       }
