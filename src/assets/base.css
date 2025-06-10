@@ -20,6 +20,9 @@
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 
+  --vt-c-colored-text: var(--p-purple-500);
+  --vt-c-hovered-text: var(--p-purple-200);
+
   --soft-green: hsla(160, 100%, 37%, 0.531);
 }
 
@@ -34,7 +37,8 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
-
+  --marked-text: var(--vt-c-colored-text);
+  --hovered-text: var(--vt-c-hovered-text);
   --section-gap: 160px;
 }
 
