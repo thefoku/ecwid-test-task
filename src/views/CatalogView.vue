@@ -8,8 +8,8 @@ import BreadCrumbs from '@/components/CategoryPage/BreadCrumbs.vue'
 import ProductCard from '@/components/CategoryPage/ProductCard.vue'
 import { useRoute } from 'vue-router'
 import { useProductStore } from '@/store/useProductStore'
-import Skeleton from 'primevue/skeleton'
 import ProductCardSkeleton from '@/components/CategoryPage/ProductCardSkeleton.vue'
+import CategoryCardSkeleton from '@/components/CategoryPage/CategoryCardSkeleton.vue'
 
 const { fetchCategories } = useCategories()
 const categoryStore = useCategoryStore()
@@ -43,7 +43,7 @@ onMounted(async () => {
     </div>
     <div class="category-list">
       <template v-if="categoryStore.loading">
-        <Skeleton size="12.5rem" class="mb-4" v-for="n in 2" :key="n" />
+        <CategoryCardSkeleton v-for="n in 2" :key="n" />
       </template>
       <CategoryCard
         v-for="category in categoryStore.categories"
