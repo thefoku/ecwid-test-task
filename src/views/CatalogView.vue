@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
-import ProgressSpinner from 'primevue/progressspinner'
 import { useCategories } from '@/services/categoryService'
 import { onMounted, watch } from 'vue'
 import { useCategoryStore } from '@/store/useCategoryStore'
@@ -36,9 +35,6 @@ onMounted(async () => {
 
 <template>
   <main>
-    <div class="flex justify-center">
-      <ProgressSpinner class="spinner" v-if="categoryStore.loading" />
-    </div>
     <h1 class="text-center text-2xl font-bold mb-4">Catalog</h1>
     <div class="catalog-main-breadcrumbs">
       <BreadCrumbs />
@@ -80,11 +76,6 @@ onMounted(async () => {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-}
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
 }
 .catalog-main-product-list {
   display: flex;

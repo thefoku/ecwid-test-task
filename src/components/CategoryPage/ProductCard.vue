@@ -46,7 +46,7 @@ const onCardClick = (slug: string) => {
             <Button
               :label="buttonText"
               outlined
-              class="w-full product-card-button"
+              class="w-full product-card-button p-button-raised p-button-success"
               @click="addToBagOnClick"
             />
           </div>
@@ -63,10 +63,10 @@ const onCardClick = (slug: string) => {
   cursor: pointer;
 }
 .product-card-wrapper:hover .p-card-title {
-  color: var(--marked-text);
+  color: var(--p-button-outlined-success-color);
 }
 .product-card-wrapper:hover {
-  border-color: var(--marked-text);
+  border-color: var(--p-button-outlined-success-color);
   transition: all 0.3s ease-in-out;
 }
 

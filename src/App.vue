@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import ProgressSpinner from 'primevue/progressspinner'
+import { useCategoryStore } from './store/useCategoryStore'
+import { useProductStore } from './store/useProductStore'
+
+const categoryStore = useCategoryStore()
+const productStore = useProductStore()
 </script>
 
 <template>
@@ -14,6 +20,9 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
 
   <RouterView />
+  <div class="flex justify-center">
+    <ProgressSpinner class="spinner" v-if="categoryStore.loading || productStore.loading" />
+  </div>
 </template>
 
 <style scoped>
@@ -50,6 +59,12 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 @media (min-width: 1024px) {
