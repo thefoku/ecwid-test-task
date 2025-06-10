@@ -20,61 +20,65 @@ const onCardClick = (slug: string) => {
 </script>
 
 <template>
-  <div class="product-card-link">
-    <Card style="overflow: hidden" @click="onCardClick(props.slug)">
-      <template #header>
-        <img :alt="props.title" :src="props.imageURL" />
-        <span v-if="props.discountedPrice" class="p-card-ribbon">ON SALE</span>
-      </template>
-      <template #title> {{ props.title }}</template>
-      <template #subtitle>
-        <span v-if="props.discountedPrice" :class="{ highlighted: props.discountedPrice }">{{
-          props.discountedPrice
-        }}</span>
-        <span> </span>
-        <span class="price" :class="{ 'line-through grey': props.discountedPrice }">{{
-          props.price
-        }}</span>
-      </template>
-      <template #content>
-        <p class="m-0">
-          {{ props.shortDescription }}
-        </p>
-      </template>
-      <template #footer>
-        <div class="flex gap-4 mt-1 justify-center align-center">
-          <Button
-            :label="buttonText"
-            outlined
-            class="w-full product-card-button"
-            @click="addToBagOnClick"
-          />
-        </div>
-      </template>
-    </Card>
+  <div class="product-card-wrapper">
+    <a
+      class="product-card-link"
+      :href="`/product/${props.slug}`"
+      @click.prevent="onCardClick(props.slug)"
+    >
+      <Card style="overflow: hidden">
+        <template #header>
+          <img :alt="props.title" :src="props.imageURL" />
+          <span v-if="props.discountedPrice" class="p-card-ribbon">ON SALE</span>
+        </template>
+        <template #title> {{ props.title }}</template>
+        <template #subtitle>
+          <span v-if="props.discountedPrice" :class="{ highlighted: props.discountedPrice }">{{
+            props.discountedPrice
+          }}</span>
+          <span> </span>
+          <span class="price" :class="{ 'line-through grey': props.discountedPrice }">{{
+            props.price
+          }}</span>
+        </template>
+        <template #footer>
+          <div class="flex gap-4 mt-1 justify-center align-center">
+            <Button
+              :label="buttonText"
+              outlined
+              class="w-full product-card-button"
+              @click="addToBagOnClick"
+            />
+          </div>
+        </template>
+      </Card>
+    </a>
   </div>
 </template>
 
 <style>
-.product-card-link {
+.product-card-wrapper {
   border-radius: 5px;
   border: 1px solid transparent;
   cursor: pointer;
 }
-.product-card-link:hover .p-card-title {
+.product-card-wrapper:hover .p-card-title {
   color: var(--marked-text);
 }
-.product-card-link:hover {
+.product-card-wrapper:hover {
   border-color: var(--marked-text);
   transition: all 0.3s ease-in-out;
 }
 
-.product-card-link .p-card.p-component {
+.product-card-wrapper .p-card.p-component {
   width: 20rem;
   height: 100%;
 }
-.product-card-link .p-card .p-card-header {
+.product-card-wrapper .p-card .p-card-header {
   position: relative !important;
+}
+.product-card-link {
+  padding: 0px;
 }
 .p-card-header img {
   width: 100%;
@@ -108,5 +112,8 @@ const onCardClick = (slug: string) => {
 .p-card-footer .product-card-button:active {
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   transform: translate3d(0, 1px, 0);
+}
+.p-card-subtitle .price {
+  font-size: 1.2rem;
 }
 </style>
