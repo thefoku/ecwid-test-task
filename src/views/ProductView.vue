@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ProductPage from '@/components/ProductPage/ProductPageComponent.vue'
-//import router from '@/router';
+import router from '@/router'
 import { useProductStore } from '@/store/useProductStore'
 import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -13,7 +13,7 @@ watch(
   async (newSlug) => {
     await productStore.loadProductBySlug(newSlug as string)
     if (!productStore.currentProduct) {
-      //router.push('/404')
+      router.push('/404')
     }
   },
 )
@@ -21,7 +21,7 @@ watch(
 onMounted(async () => {
   await productStore.loadProductBySlug(route.params.productSlug as string)
   if (!productStore.currentProduct) {
-    //router.push('/404')
+    router.push('/404')
   }
 })
 </script>

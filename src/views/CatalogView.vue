@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
-import { useCategories } from '@/services/categoryService'
 import { onMounted, watch } from 'vue'
 import { useCategoryStore } from '@/store/useCategoryStore'
 import CategoryCard from '@/components/CategoryPage/CategoryCard.vue'
@@ -11,7 +10,6 @@ import { useProductStore } from '@/store/useProductStore'
 import ProductCardSkeleton from '@/components/CategoryPage/ProductCardSkeleton.vue'
 import CategoryCardSkeleton from '@/components/CategoryPage/CategoryCardSkeleton.vue'
 
-const { fetchCategories } = useCategories()
 const categoryStore = useCategoryStore()
 const productStore = useProductStore()
 
@@ -63,12 +61,6 @@ onMounted(async () => {
         v-bind="product"
       />
     </div>
-    <Button
-      label="Fetch Categories"
-      outlined
-      severity="secondary"
-      @click="fetchCategories(173495753)"
-    />
     <Button
       label="Load products"
       outlined
