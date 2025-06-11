@@ -5,13 +5,16 @@ import router from '@/router'
 import { ref } from 'vue'
 import type { ProductCardItem } from '@/types/ecwid'
 
-const props = defineProps<ProductCardItem>()
+// const props = defineProps<ProductCardItem>()
+const props = defineProps<{
+  product: ProductCardItem
+}>()
 
 const buttonText = ref('Add to Bag')
 
 const addToBagOnClick = async (event: Event) => {
   event.stopPropagation()
-  console.log('Add to bag clicked for:', props.currentProduct)
+  console.log('Add to bag clicked for:', props.product)
 }
 
 const onCardClick = (slug: string) => {
@@ -23,22 +26,22 @@ const onCardClick = (slug: string) => {
   <div class="product-card-wrapper">
     <a
       class="product-card-link"
-      :href="`/product/${props.slug}`"
-      @click.prevent="onCardClick(props.slug)"
+      :href="`/product/${product.slug}`"
+      @click.prevent="onCardClick(product.slug)"
     >
       <Card style="overflow: hidden">
         <template #header>
-          <img :alt="props.title" :src="props.imageURL" />
-          <span v-if="props.discountedPrice" class="p-card-ribbon">ON SALE</span>
+          <img :alt="product.title" :src="product.imageURL" />
+          <span v-if="product.discountedPrice" class="p-card-ribbon">ON SALE</span>
         </template>
-        <template #title> {{ props.title }}</template>
+        <template #title> {{ product.title }}</template>
         <template #subtitle>
-          <span v-if="props.discountedPrice" :class="{ highlighted: props.discountedPrice }">{{
-            props.discountedPrice
+          <span v-if="product.discountedPrice" :class="{ highlighted: product.discountedPrice }">{{
+            product.discountedPrice
           }}</span>
           <span> </span>
-          <span class="price" :class="{ 'line-through grey': props.discountedPrice }">{{
-            props.price
+          <span class="price" :class="{ 'line-through grey': product.discountedPrice }">{{
+            product.price
           }}</span>
         </template>
         <template #footer>

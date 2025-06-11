@@ -58,7 +58,7 @@ onMounted(async () => {
       <ProductCard
         v-for="(product, index) in productStore.currentPageProducts"
         :key="index"
-        v-bind="product"
+        :product="product"
       />
     </div>
     <Button
