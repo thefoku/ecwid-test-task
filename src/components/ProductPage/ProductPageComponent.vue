@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import router from '@/router'
+import type { ProductCardItem } from '@/types/ecwid'
 import { Button } from 'primevue'
+import { useProductStore } from '@/store/useProductStore'
 import Skeleton from 'primevue/skeleton'
 
 const props = defineProps<{
-  image: string
-  name: string
-  slug: string
-  price: string
-  discountedPrice?: string
-  description?: string
-  loading?: boolean
+  product: ProductCardItem
 }>()
 
+const productStore = useProductStore()
+
 function onAddToBagClick() {
-  console.log('Add to Bag clicked for:', props.name)
+  console.log('Add to Bag clicked for:', props.product.currentProduct)
 }
 
 function goBack() {
@@ -28,20 +26,20 @@ function goBack() {
   </div>
   <div class="product-page-wrapper">
     <div class="product-image">
-      <Skeleton width="40rem" height="55rem" class="mb-4" v-if="props.loading" />
-      <img v-if="!props.loading" :src="props.image" :alt="props.name" />
+      <Skeleton width="40rem" height="55rem" class="mb-4" v-if="productStore.loading" />
+      <img v-if="!productStore.loading" :src="product.imageURL" :alt="product.title" />
     </div>
     <div class="product-details">
-      <h1 class="product-name">{{ props.name }}</h1>
+      <h1 class="product-name">{{ product.title }}</h1>
       <div class="product-price">
-        <span v-if="props.discountedPrice" class="discounted-price">{{
-          props.discountedPrice
+        <span v-if="product.discountedPrice" class="discounted-price">{{
+          product.discountedPrice
         }}</span>
-        <span class="price">{{ props.price }}</span>
+        <span class="price">{{ product.price }}</span>
       </div>
-      <div class="product-description-wrapper" v-if="props.description">
+      <div class="product-description-wrapper" v-if="product.description">
         <p class="product-description-text">Product description:</p>
-        <div class="product-description" v-html="props.description"></div>
+        <div class="product-description" v-html="product.description"></div>
       </div>
       <div class="product-buy-button">
         <Button

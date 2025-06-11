@@ -11,7 +11,7 @@ const buttonText = ref('Add to Bag')
 
 const addToBagOnClick = async (event: Event) => {
   event.stopPropagation()
-  console.log('Add to bag clicked for:', props.title)
+  console.log('Add to bag clicked for:', props.currentProduct)
 }
 
 const onCardClick = (slug: string) => {
