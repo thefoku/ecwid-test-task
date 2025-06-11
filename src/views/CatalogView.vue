@@ -9,9 +9,11 @@ import { useRoute } from 'vue-router'
 import { useProductStore } from '@/store/useProductStore'
 import ProductCardSkeleton from '@/components/CategoryPage/ProductCardSkeleton.vue'
 import CategoryCardSkeleton from '@/components/CategoryPage/CategoryCardSkeleton.vue'
+import { useCheckoutStore } from '@/store/useCheckoutStore'
 
 const categoryStore = useCategoryStore()
 const productStore = useProductStore()
+const checkoutStore = useCheckoutStore()
 
 const route = useRoute()
 
@@ -66,6 +68,12 @@ onMounted(async () => {
       outlined
       severity="secondary"
       @click="console.log(productStore.currentPageProducts)"
+    />
+    <Button
+      label="Show Checkout Items"
+      outlined
+      severity="secondary"
+      @click="console.log(checkoutStore.items)"
     />
   </main>
 </template>

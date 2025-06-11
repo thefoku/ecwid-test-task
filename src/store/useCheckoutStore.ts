@@ -5,6 +5,17 @@ import type { CartItem } from '@/types/cart'
 const CART_STORAGE_KEY = 'ecwid-cart'
 
 export const useCheckoutStore = defineStore('cart', () => {
+  const loadCartFromStorage = (): CartItem[] => {
+    if (typeof localStorage === 'undefined') return []
+    const raw = localStorage.getItem(CART_STORAGE_KEY)
+    try {
+      return raw ? JSON.parse(raw) : []
+    } catch (err) {
+      console.warn('Error when parsing products from localStorage:', err)
+      return []
+    }
+  }
+
   const items = ref<CartItem[]>(loadCartFromStorage())
 
   function addItem(newItem: CartItem) {
@@ -43,16 +54,6 @@ export const useCheckoutStore = defineStore('cart', () => {
     clearCart,
     totalQuantity,
     totalPrice,
+    loadCartFromStorage,
   }
 })
-
-function loadCartFromStorage(): CartItem[] {
-  if (typeof localStorage === 'undefined') return []
-  const raw = localStorage.getItem(CART_STORAGE_KEY)
-  try {
-    return raw ? JSON.parse(raw) : []
-  } catch (err) {
-    console.warn('Error when parsing products from localStorage:', err)
-    return []
-  }
-}

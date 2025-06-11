@@ -100,3 +100,6 @@ body {
 .align-center {
   align-items: center;
 }
+.transparent-border {
+  border-color: transparent;
+}

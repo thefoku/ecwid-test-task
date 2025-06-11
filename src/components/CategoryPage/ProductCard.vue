@@ -4,6 +4,7 @@ import Button from 'primevue/button'
 import router from '@/router'
 import { ref } from 'vue'
 import type { ProductCardItem } from '@/types/ecwid'
+import { addToCart } from '@/services/checkoutService'
 
 // const props = defineProps<ProductCardItem>()
 const props = defineProps<{
@@ -14,7 +15,8 @@ const buttonText = ref('Add to Bag')
 
 const addToBagOnClick = async (event: Event) => {
   event.stopPropagation()
-  console.log('Add to bag clicked for:', props.product)
+  console.log('Add to bag clicked for:', props.product.currentProduct)
+  addToCart(props.product.currentProduct)
 }
 
 const onCardClick = (slug: string) => {
