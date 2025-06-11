@@ -47,7 +47,7 @@ const onCardClick = (slug: string) => {
               :label="buttonText"
               outlined
               class="w-full product-card-button p-button-raised p-button-success"
-              @click="addToBagOnClick"
+              @click.prevent="addToBagOnClick"
             />
           </div>
         </template>
