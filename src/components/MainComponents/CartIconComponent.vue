@@ -37,6 +37,7 @@ header .cart-icon path {
   justify-content: center;
   align-items: center;
   position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
 .cart-counter {
@@ -48,5 +49,10 @@ header .cart-icon path {
   width: 40%;
   height: 40%;
   text-align: center;
+}
+
+.header-cart .cart-link:hover,
+.header-cart .cart-link:hover .cart-counter {
+  background-color: var(--soft-green-light);
 }
 </style>

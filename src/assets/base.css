@@ -24,6 +24,7 @@
   --vt-c-hovered-text: var(--p-purple-200);
 
   --soft-green: hsla(160, 100%, 37%, 0.531);
+  --soft-green-light: hsl(160deg 100% 37% / 13%);
 }
 
 /* semantic color variables for this project */

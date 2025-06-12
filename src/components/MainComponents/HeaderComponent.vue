@@ -31,8 +31,8 @@ header {
 
 nav.header-nav {
   width: 80%;
-  text-align: center;
   font-size: 1rem;
+  padding: 1rem 0;
 }
 
 header .header-wrapper {
@@ -65,7 +65,6 @@ nav.header-nav a:first-of-type {
   header {
     display: flex;
     place-items: center;
-    padding: 1rem calc(var(--section-gap) / 2);
   }
 
   .logo {
@@ -84,7 +83,6 @@ nav.header-nav a:first-of-type {
     display: flex;
     text-align: left;
     width: 60%;
-    padding: 1rem 0;
   }
 }
 </style>
