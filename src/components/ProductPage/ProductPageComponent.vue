@@ -5,7 +5,7 @@ import { Button } from 'primevue'
 import { useProductStore } from '@/store/useProductStore'
 import Skeleton from 'primevue/skeleton'
 import { addToCart } from '@/services/checkoutService'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const props = defineProps<{
   product: ProductCardItem
@@ -16,7 +16,6 @@ const productStore = useProductStore()
 const buttonText = ref('Add to Bag')
 
 function onAddToBagClick() {
-  console.log('Add to Bag clicked for:', props.product.currentProduct)
   buttonText.value = '✓'
   setTimeout(() => {
     buttonText.value = 'Add to Bag'
@@ -27,6 +26,10 @@ function onAddToBagClick() {
 function goBack() {
   router.back()
 }
+
+onMounted(() => {
+  document.title = props.product.title
+})
 </script>
 
 <template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
 import { onMounted, watch } from 'vue'
 import { useCategoryStore } from '@/store/useCategoryStore'
 import CategoryCard from '@/components/CategoryPage/CategoryCard.vue'
@@ -9,17 +8,16 @@ import { useRoute } from 'vue-router'
 import { useProductStore } from '@/store/useProductStore'
 import ProductCardSkeleton from '@/components/CategoryPage/ProductCardSkeleton.vue'
 import CategoryCardSkeleton from '@/components/CategoryPage/CategoryCardSkeleton.vue'
-import { useCheckoutStore } from '@/store/useCheckoutStore'
 
 const categoryStore = useCategoryStore()
 const productStore = useProductStore()
-const checkoutStore = useCheckoutStore()
 
 const route = useRoute()
 
 watch(
   () => route.params.categorySlug,
   async (newSlug) => {
+    document.title = categoryStore.getCategoryBySlug(newSlug as string)?.name || 'Catalog'
     categoryStore.categories = categoryStore.getCategoriesByParentId(newSlug as string) ?? [] // maybe search by slug?
     await productStore.loadProducts(newSlug as string)
   },
@@ -28,6 +26,8 @@ watch(
 onMounted(async () => {
   await categoryStore.loadCategories()
   if (route.params.categorySlug) {
+    document.title =
+      categoryStore.getCategoryBySlug(route.params.categorySlug as string)?.name || ''
     categoryStore.categories =
       categoryStore.getCategoriesByParentId(route.params.categorySlug as string) ?? []
   }
@@ -63,18 +63,6 @@ onMounted(async () => {
         :product="product"
       />
     </div>
-    <Button
-      label="Load products"
-      outlined
-      severity="secondary"
-      @click="console.log(productStore.currentPageProducts)"
-    />
-    <Button
-      label="Show Checkout Items"
-      outlined
-      severity="secondary"
-      @click="console.log(checkoutStore.items)"
-    />
   </main>
 </template>
 

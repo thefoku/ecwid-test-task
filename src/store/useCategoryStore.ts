@@ -89,5 +89,6 @@ export const useCategoryStore = defineStore('category', () => {
     getCategoriesByParentId,
     getBreadcrumbPathBySlug,
     getCategoryIdBySlug,
+    getCategoryBySlug,
   }
 })
