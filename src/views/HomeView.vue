@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import FullImageCover from '@/components/CoverComponents/FullImageCover.vue'
 
 onMounted(() => {})
 </script>
 
 <template>
   <main>
-    <h1>Welcome to the store!</h1>
+    <FullImageCover />
   </main>
 </template>

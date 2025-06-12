@@ -31,8 +31,8 @@ header {
 
 nav.header-nav {
   width: 80%;
-  font-size: 12px;
   text-align: center;
+  font-size: 1rem;
 }
 
 header .header-wrapper {
@@ -83,7 +83,6 @@ nav.header-nav a:first-of-type {
   nav.header-nav {
     display: flex;
     text-align: left;
-    font-size: 1rem;
     width: 60%;
     padding: 1rem 0;
   }

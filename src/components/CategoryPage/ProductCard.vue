@@ -86,15 +86,15 @@ const onCardClick = (slug: string) => {
 .product-card-link {
   padding: 0px;
 }
-.p-card-header img {
+.product-card-link .p-card-header img {
   width: 100%;
   height: 500px;
   object-fit: cover;
 }
-.p-card-body {
+.product-card-link .p-card-body {
   height: 100%;
 }
-.p-card-footer {
+.product-card-link .p-card-footer {
   margin-top: auto;
 }
 .highlighted {
@@ -105,21 +105,21 @@ const onCardClick = (slug: string) => {
 .grey {
   color: grey;
 }
-.p-card-ribbon {
+.product-card-link .p-card-ribbon {
   position: absolute;
   right: 0px;
   background-color: var(--p-primary-700);
   padding: 5px 10px;
   top: 1rem;
 }
-.p-card-footer .product-card-button {
+.product-card-link .p-card-footer .product-card-button {
   width: 120px;
 }
-.p-card-footer .product-card-button:active {
+.product-card-link .p-card-footer .product-card-button:active {
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   transform: translate3d(0, 1px, 0);
 }
-.p-card-subtitle .price {
+.product-card-link .p-card-subtitle .price {
   font-size: 1.2rem;
 }
 </style>

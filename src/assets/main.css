@@ -14,6 +14,11 @@
   max-width: 1120px;
   width: 100%;
   margin-top: 1.5rem;
+  min-height: 90vh;
+}
+
+#app main h1 {
+  text-align: center;
 }
 
 header {
