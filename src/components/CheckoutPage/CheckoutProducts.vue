@@ -2,6 +2,7 @@
 import type { CartItem } from '@/types/cart'
 import { Button } from 'primevue'
 import { useCheckoutStore } from '@/store/useCheckoutStore'
+import { onMounted } from 'vue'
 
 const props = defineProps<{
   product: CartItem
@@ -14,6 +15,10 @@ const onDeleteButtonClick = (event: Event) => {
   console.log('Delete product from cart:', props.product.id)
   checkoutStore.removeItem(props.product.id)
 }
+
+onMounted(() => {
+  console.log(props.product)
+})
 </script>
 
 <template>
@@ -33,7 +38,7 @@ const onDeleteButtonClick = (event: Event) => {
       </div>
       <div class="product-cart-details">
         <h3 class="product-cart-details-name">{{ product.title }}</h3>
-        <p>Price: {{ product.price }}</p>
+        <p>Price: {{ product.formattedPrice }}</p>
         <p>Quantity: {{ product.quantity }}</p>
       </div>
     </div>
@@ -56,6 +61,8 @@ const onDeleteButtonClick = (event: Event) => {
   width: 100%;
   position: relative;
   background-color: var(--color-background);
+  border-radius: 5px;
+  border: 1px solid var(--soft-green);
 }
 .product-cart-delete-button {
   position: absolute;

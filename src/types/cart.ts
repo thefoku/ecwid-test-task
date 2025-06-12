@@ -5,4 +5,5 @@ export interface CartItem {
   imageURL?: string
   quantity: number
   slug: string
+  formattedPrice: string
 }
