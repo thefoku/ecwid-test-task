@@ -43,4 +43,18 @@ import { Skeleton } from 'primevue'
 .product-image {
   width: 60%;
 }
+
+@media screen and (max-width: 1000px) {
+  .product-page-skeleton {
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+  }
+  .product-image {
+    width: auto;
+  }
+  .product-details {
+    width: auto;
+  }
+}
 </style>

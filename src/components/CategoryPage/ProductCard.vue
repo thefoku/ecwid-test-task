@@ -5,8 +5,6 @@ import router from '@/router'
 import { ref } from 'vue'
 import type { ProductCardItem } from '@/types/ecwid'
 import { addToCart } from '@/services/checkoutService'
-
-// const props = defineProps<ProductCardItem>()
 const props = defineProps<{
   product: ProductCardItem
 }>()
@@ -16,6 +14,10 @@ const buttonText = ref('Add to Bag')
 const addToBagOnClick = async (event: Event) => {
   event.stopPropagation()
   console.log('Add to bag clicked for:', props.product.currentProduct)
+  buttonText.value = '✓'
+  setTimeout(() => {
+    buttonText.value = 'Add to Bag'
+  }, 1000)
   addToCart(props.product.currentProduct)
 }
 

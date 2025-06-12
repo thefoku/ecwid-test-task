@@ -4,6 +4,8 @@ import type { ProductCardItem } from '@/types/ecwid'
 import { Button } from 'primevue'
 import { useProductStore } from '@/store/useProductStore'
 import Skeleton from 'primevue/skeleton'
+import { addToCart } from '@/services/checkoutService'
+import { ref } from 'vue'
 
 const props = defineProps<{
   product: ProductCardItem
@@ -11,8 +13,15 @@ const props = defineProps<{
 
 const productStore = useProductStore()
 
+const buttonText = ref('Add to Bag')
+
 function onAddToBagClick() {
   console.log('Add to Bag clicked for:', props.product.currentProduct)
+  buttonText.value = '✓'
+  setTimeout(() => {
+    buttonText.value = 'Add to Bag'
+  }, 1000)
+  addToCart(props.product.currentProduct)
 }
 
 function goBack() {
@@ -43,7 +52,7 @@ function goBack() {
       </div>
       <div class="product-buy-button">
         <Button
-          label="Add to Bag"
+          :label="buttonText"
           outlined
           class="p-button-raised p-button-success"
           @click="onAddToBagClick"
@@ -115,5 +124,23 @@ function goBack() {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+}
+
+.product-buy-button .p-button {
+  width: 120px;
+}
+
+@media screen and (max-width: 1000px) {
+  .product-page-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+  }
+  .product-image {
+    width: auto;
+  }
+  .product-details {
+    width: auto;
+  }
 }
 </style>
