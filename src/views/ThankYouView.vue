@@ -29,8 +29,8 @@ onMounted(() => {
         soon!
       </p>
 
-      <div class="product-list">
-        <p class="product-list-title">Your purchased products:</p>
+      <div class="thankyou-page-product-list">
+        <p class="thankyou-page-product-list-title">Your purchased products:</p>
         <CheckoutProducts
           v-for="product in checkoutStore.purchasedItems"
           :key="product.id"
@@ -54,10 +54,13 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   gap: 1rem;
 }
-.product-list .product-cart-link .product-cart-wrapper .product-cart-delete-button {
+.thankyou-page-product-list {
+  width: 80%;
+}
+.thankyou-page-product-list .product-cart-link .product-cart-wrapper .product-cart-delete-button {
   display: none;
 }
 .thankyou-page-email {

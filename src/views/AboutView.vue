@@ -5,7 +5,6 @@ import { Card } from 'primevue'
 <template>
   <main>
     <div class="about">
-      <h1>About me</h1>
       <Card class="about-card">
         <template #header>
           <img class="about-card-image" alt="user header" src="@/assets/img/roma-image.jpg" />
@@ -32,12 +31,14 @@ import { Card } from 'primevue'
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  width: 80%;
+  margin: auto;
 }
 .about-card {
   align-items: center;
   border: 1px solid transparent;
   transition: all 0.3s ease-in-out;
-  width: 90%;
+  width: 88%;
 }
 .about-card:hover {
   border-color: var(--soft-green);
@@ -45,9 +46,12 @@ import { Card } from 'primevue'
 
 .about-card-image {
   max-width: 100%;
+  padding: var(--p-card-body-padding);
+  padding-bottom: 0;
 }
 
 @media screen and (max-width: 1200px) {
+  .about,
   .about-card {
     width: 100%;
   }
