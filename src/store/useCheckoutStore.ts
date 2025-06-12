@@ -17,6 +17,7 @@ export const useCheckoutStore = defineStore('cart', () => {
   }
 
   const items = ref<CartItem[]>(loadCartFromStorage())
+  const purchasedItems = ref<CartItem[]>([])
 
   function addItem(newItem: CartItem) {
     const existing = items.value.find((item) => item.id === newItem.id)
@@ -40,6 +41,11 @@ export const useCheckoutStore = defineStore('cart', () => {
   const totalPrice = () =>
     items.value.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
 
+  function placeOrder() {
+    purchasedItems.value = items.value
+    clearCart()
+  }
+
   watch(
     items,
     () => {
@@ -50,11 +56,13 @@ export const useCheckoutStore = defineStore('cart', () => {
 
   return {
     items,
+    purchasedItems,
     addItem,
     removeItem,
     clearCart,
     totalQuantity,
     totalPrice,
     loadCartFromStorage,
+    placeOrder,
   }
 })

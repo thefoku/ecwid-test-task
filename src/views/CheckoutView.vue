@@ -22,9 +22,8 @@ function goToCatalog() {
 function onPlaceOrderClick() {
   const isEmailValid = validateEmail()
   if (isEmailValid) {
-    console.log('Email validated, push to Thank you page')
-  } else {
-    console.log('not valid')
+    checkoutStore.placeOrder()
+    router.push('/checkout/order-confirmation')
   }
 }
 

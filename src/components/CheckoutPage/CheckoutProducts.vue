@@ -2,7 +2,6 @@
 import type { CartItem } from '@/types/cart'
 import { Button } from 'primevue'
 import { useCheckoutStore } from '@/store/useCheckoutStore'
-import { onMounted } from 'vue'
 
 const props = defineProps<{
   product: CartItem
@@ -15,10 +14,6 @@ const onDeleteButtonClick = (event: Event) => {
   console.log('Delete product from cart:', props.product.id)
   checkoutStore.removeItem(props.product.id)
 }
-
-onMounted(() => {
-  console.log(props.product)
-})
 </script>
 
 <template>

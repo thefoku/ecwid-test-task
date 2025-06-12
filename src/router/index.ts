@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('../views/CheckoutView.vue'),
     },
     {
+      path: '/checkout/order-confirmation',
+      name: 'order-confirmation',
+      component: () => import('../views/ThankYouView.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: '404',
       component: () => import('../views/NotFoundView.vue'),
