@@ -40,13 +40,15 @@ onMounted(async () => {
     </div>
     <div class="checkout-wrapper" v-if="checkoutStore.items.length > 0">
       <div class="checkout-products-list">
-        <h3>Your products:</h3>
+        <h2>Your products:</h2>
         <CheckoutProducts
           v-for="product in checkoutStore.items"
           :key="product.id"
           :product="product"
         />
-        <p class="checkout-total">TOTAL: €{{ checkoutStore.totalPrice() }}</p>
+        <div class="checkout-products-list-total">
+          <p class="checkout-total">TOTAL: €{{ checkoutStore.totalPrice() }}</p>
+        </div>
       </div>
       <div class="checkout-information">
         <div class="checkout-email-wrapper">
@@ -119,5 +121,15 @@ onMounted(async () => {
   justify-content: center;
   gap: 2rem;
   height: 60vh;
+}
+
+@media screen and (max-width: 1000px) {
+  .checkout-wrapper {
+    flex-direction: column;
+  }
+  .checkout-products-list,
+  .checkout-information {
+    width: 100%;
+  }
 }
 </style>

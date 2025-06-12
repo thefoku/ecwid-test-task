@@ -37,7 +37,8 @@ export const useCheckoutStore = defineStore('cart', () => {
 
   const totalQuantity = () => items.value.reduce((sum, item) => sum + item.quantity, 0)
 
-  const totalPrice = () => items.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const totalPrice = () =>
+    items.value.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
 
   watch(
     items,

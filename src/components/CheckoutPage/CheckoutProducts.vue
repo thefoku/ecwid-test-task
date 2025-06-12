@@ -73,7 +73,7 @@ onMounted(() => {
   text-align: center;
 }
 .product-cart-image {
-  max-width: 50%;
+  max-width: 30%;
 }
 .product-cart-image img {
   width: 100%;
@@ -86,9 +86,10 @@ onMounted(() => {
   flex-direction: column;
   margin: auto;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 1rem;
   gap: 1rem;
+  font-size: 1.1rem;
 }
 .product-cart-link:hover .product-cart-details-name {
   color: var(--p-button-outlined-success-color); /* Change text color on hover */

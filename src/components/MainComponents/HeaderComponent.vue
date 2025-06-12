@@ -30,9 +30,17 @@ header {
 }
 
 nav.header-nav {
-  width: 100%;
+  width: 80%;
   font-size: 12px;
   text-align: center;
+}
+
+header .header-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 nav a.router-link-exact-active {
