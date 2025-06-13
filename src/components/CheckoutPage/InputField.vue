@@ -12,6 +12,8 @@ defineProps<{
   type?: string;
   placeholder?: string;
   validate?: () => boolean;
+  min?: number;
+  max?: number;
 }>();
 const model = defineModel('modelValue', {
   type: String,
@@ -30,6 +32,8 @@ const model = defineModel('modelValue', {
       v-model="model"
       :class="{ 'p-invalid': error, inputClass }"
       @change="validate"
+      :min="min"
+      :max="max"
     />
     <Message v-if="error" severity="error" size="small" variant="simple">{{ error }}</Message>
   </FormField>

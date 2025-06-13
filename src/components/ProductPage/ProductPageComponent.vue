@@ -6,6 +6,7 @@ import { useProductStore } from '@/stores/useProductStore';
 import Skeleton from 'primevue/skeleton';
 import { addToCart } from '@/services/checkoutService';
 import { onMounted, ref } from 'vue';
+import InputField from '../CheckoutPage/InputField.vue';
 
 const props = defineProps<{
   product: ProductCardItem;
@@ -15,16 +16,26 @@ const productStore = useProductStore();
 
 const buttonText = ref('Add to Bag');
 
+const quantity = ref('1');
+
 function onAddToBagClick() {
   buttonText.value = '✓';
   setTimeout(() => {
     buttonText.value = 'Add to Bag';
   }, 1000);
-  addToCart(props.product.currentProduct);
+  addToCart(props.product.currentProduct, Number(quantity.value));
 }
 
 function goBack() {
   router.back();
+}
+
+function validateQuantity() {
+  if (Number(quantity.value) < 1) {
+    quantity.value = '1';
+    return false;
+  }
+  return true;
 }
 
 onMounted(() => {
@@ -52,6 +63,17 @@ onMounted(() => {
       <div class="product-description-wrapper" v-if="product.description">
         <p class="product-description-text">Product description:</p>
         <div class="product-description" v-html="product.description"></div>
+      </div>
+      <div class="product-quantity">
+        <InputField
+          label="Quantity:"
+          name="product-quantity"
+          v-model:modelValue="quantity"
+          placeholder="Qty"
+          type="number"
+          :min="1"
+          :validate="validateQuantity"
+        />
       </div>
       <div class="product-buy-button">
         <Button
@@ -131,6 +153,10 @@ onMounted(() => {
 
 .product-buy-button .p-button {
   width: 120px;
+}
+
+.product-quantity {
+  width: 20%;
 }
 
 @media screen and (max-width: 1000px) {
