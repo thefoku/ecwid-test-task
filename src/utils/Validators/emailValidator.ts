@@ -1,7 +1,7 @@
 import { z } from 'zod'
-import { useUserStore } from '@/store/useUserStore'
+import { useEmailStore } from '@/stores/useUserStore'
 
-const userStore = useUserStore()
+const userStore = useEmailStore()
 
 export const emailSchema = z.string().email({
   message: 'Enter valid email address',

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Button } from 'primevue'
-import router from '@/router'
+import router, { ROUTER_PATHS } from '@/router'
 
 const routeToCatalog = () => {
-  router.push('/catalog')
+  router.push(ROUTER_PATHS.CATALOG)
 }
 </script>
 

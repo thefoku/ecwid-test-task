@@ -28,7 +28,6 @@ const onCategoryClick = () => {
   justify-content: center;
   width: 200px;
   height: 200px;
-  /* padding: 1rem; */
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: linear-gradient(#e66465, #9198e5);

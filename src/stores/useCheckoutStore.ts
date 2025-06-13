@@ -1,22 +1,22 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
+import type { Ref } from 'vue'
 import type { CartItem } from '@/types/cart'
 
 const CART_STORAGE_KEY = 'ecwid-cart'
 
-export const useCheckoutStore = defineStore('cart', () => {
-  const loadCartFromStorage = (): CartItem[] => {
-    if (typeof localStorage === 'undefined') return []
-    const raw = localStorage.getItem(CART_STORAGE_KEY)
-    try {
-      return raw ? JSON.parse(raw) : []
-    } catch (err) {
-      console.warn('Error when parsing products from localStorage:', err)
-      return []
-    }
+const initCartFromStorage = (): Ref<CartItem[]> => {
+  const raw = localStorage.getItem(CART_STORAGE_KEY)
+  try {
+    return ref<CartItem[]>(raw ? JSON.parse(raw) : [])
+  } catch (err) {
+    console.warn('Error when parsing products from localStorage:', err)
+    return ref([])
   }
+}
 
-  const items = ref<CartItem[]>(loadCartFromStorage())
+export const useCheckoutStore = defineStore('cart', () => {
+  const items = initCartFromStorage()
   const purchasedItems = ref<CartItem[]>([])
 
   function addItem(newItem: CartItem) {
@@ -36,10 +36,13 @@ export const useCheckoutStore = defineStore('cart', () => {
     items.value = []
   }
 
-  const totalQuantity = () => items.value.reduce((sum, item) => sum + item.quantity, 0)
+  function getTotalQuantity() {
+    return items.value.reduce((sum, item) => sum + item.quantity, 0)
+  }
 
-  const totalPrice = () =>
-    items.value.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+  function getTotalPrice() {
+    return items.value.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+  }
 
   function placeOrder() {
     purchasedItems.value = items.value
@@ -60,9 +63,9 @@ export const useCheckoutStore = defineStore('cart', () => {
     addItem,
     removeItem,
     clearCart,
-    totalQuantity,
-    totalPrice,
-    loadCartFromStorage,
+    getTotalQuantity,
+    getTotalPrice,
+    initCartFromStorage,
     placeOrder,
   }
 })

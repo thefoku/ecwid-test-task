@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import CartIconComponent from './CartIconComponent.vue'
+import { ROUTER_PATHS } from '@/router'
 </script>
 
 <template>
   <header>
     <div class="header-wrapper">
       <nav class="header-nav">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/catalog">Catalog</RouterLink>
+        <RouterLink :to="ROUTER_PATHS.HOME">Home</RouterLink>
+        <RouterLink :to="ROUTER_PATHS.ABOUT">About</RouterLink>
+        <RouterLink :to="ROUTER_PATHS.CATALOG">Catalog</RouterLink>
       </nav>
       <div class="header-cart">
         <CartIconComponent />

@@ -3,7 +3,7 @@ import Card from 'primevue/card'
 import Button from 'primevue/button'
 import router from '@/router'
 import { ref } from 'vue'
-import type { ProductCardItem } from '@/types/ecwid'
+import type { ProductCardItem } from '@/types/productCard'
 import { addToCart } from '@/services/checkoutService'
 const props = defineProps<{
   product: ProductCardItem

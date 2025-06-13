@@ -2,11 +2,11 @@
 import { RouterLink } from 'vue-router'
 import CartIcon from '@/assets/img/shopping-bag.svg'
 import { computed } from 'vue'
-import { useCheckoutStore } from '@/store/useCheckoutStore'
+import { useCheckoutStore } from '@/stores/useCheckoutStore'
 
 const checkoutStore = useCheckoutStore()
 
-const cartItemsCount = computed(() => checkoutStore.totalQuantity())
+const cartItemsCount = computed(() => checkoutStore.getTotalQuantity())
 </script>
 
 <template>

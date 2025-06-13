@@ -1,4 +1,4 @@
-import { useCheckoutStore } from '@/store/useCheckoutStore.ts'
+import { useCheckoutStore } from '@/stores/useCheckoutStore'
 import type { EcwidProduct } from '@/types/ecwid'
 
 const cartStore = useCheckoutStore()

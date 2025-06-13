@@ -4,19 +4,17 @@ import { Button } from 'primevue'
 </script>
 
 <template>
-  <main>
-    <div class="page404">
-      <img alt="page not found image" class="img-404" src="../assets/img/404-icon.png" />
-      <h1>Oooops!...</h1>
-      <h3>We couldn’t find that page — maybe the address is wrong or it’s been moved.</h3>
-      <Button
-        class="button-to-home w-full product-card-button p-button-raised p-button-success"
-        outlined
-        @click="router.back()"
-        >Go Back</Button
-      >
-    </div>
-  </main>
+  <div class="page404">
+    <img alt="page not found image" class="img-404" src="../assets/img/404-icon.png" />
+    <h1>Oooops!...</h1>
+    <h3>We couldn’t find that page — maybe the address is wrong or it’s been moved.</h3>
+    <Button
+      class="button-to-home w-full product-card-button p-button-raised p-button-success"
+      outlined
+      @click="router.back()"
+      >Go Back</Button
+    >
+  </div>
 </template>
 
 <style scoped>

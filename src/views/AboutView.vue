@@ -3,26 +3,24 @@ import { Card } from 'primevue'
 </script>
 
 <template>
-  <main>
-    <div class="about">
-      <Card class="about-card">
-        <template #header>
-          <img class="about-card-image" alt="user header" src="@/assets/img/roma-image.jpg" />
-        </template>
-        <template #title
-          ><a href="https://github.com/thefoku" target="_blank">Roman Kargin</a></template
-        >
-        <template #content>
-          <p class="m-0 about-content">
-            Living in Tbilisi, and working as a technical support specialist in Ecwid by Lightspeed
-            e-commerce platform. Soon, I plan to change my career and become a Front-end software
-            developer. In my free time, I play video games, guitar, and take care of two cats and a
-            dog (I'm hugging him).
-          </p>
-        </template>
-      </Card>
-    </div>
-  </main>
+  <div class="about">
+    <Card class="about-card">
+      <template #header>
+        <img class="about-card-image" alt="user header" src="@/assets/img/roma-image.jpg" />
+      </template>
+      <template #title
+        ><a href="https://github.com/thefoku" target="_blank">Roman Kargin</a></template
+      >
+      <template #content>
+        <p class="m-0 about-content">
+          Living in Tbilisi, and working as a technical support specialist in Ecwid by Lightspeed
+          e-commerce platform. Soon, I plan to change my career and become a Front-end software
+          developer. In my free time, I play video games, guitar, and take care of two cats and a
+          dog (I'm hugging him).
+        </p>
+      </template>
+    </Card>
+  </div>
 </template>
 
 <style>

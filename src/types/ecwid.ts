@@ -28,18 +28,6 @@ export interface EcwidCategoriesResponse {
   items: EcwidCategory[]
 }
 
-export interface ProductCardItem {
-  title: string
-  price: string
-  discountedPrice?: string | null
-  shortDescription: string
-  description?: string
-  imageURL: string
-  slug: string
-  sku: string
-  currentProduct: EcwidProduct
-}
-
 export interface EcwidProduct {
   id: number
   name: string
@@ -63,14 +51,4 @@ export interface EcwidProductsResponse {
   offset: number
   limit: number
   items: EcwidProduct[]
-}
-
-export interface ParsedProduct {
-  id: number
-  slug: string
-  title: string
-  imageURL: string
-  price: string
-  discountedPrice?: string
-  shortDescription?: string
 }

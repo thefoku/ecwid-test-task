@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import router from '@/router'
-import type { ProductCardItem } from '@/types/ecwid'
+import type { ProductCardItem } from '@/types/productCard'
 import { Button } from 'primevue'
-import { useProductStore } from '@/store/useProductStore'
+import { useProductStore } from '@/stores/useProductStore'
 import Skeleton from 'primevue/skeleton'
 import { addToCart } from '@/services/checkoutService'
 import { onMounted, ref } from 'vue'
