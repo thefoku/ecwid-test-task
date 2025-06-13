@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { Message } from 'primevue'
-import { FormField } from '@primevue/forms'
-import { InputText } from 'primevue'
-import { defineModel } from 'vue'
+import { Message } from 'primevue';
+import { FormField } from '@primevue/forms';
+import { InputText } from 'primevue';
+import { defineModel } from 'vue';
 defineProps<{
-  name: string
-  label?: string
-  modelValue: string
-  inputClass?: string
-  error?: string
-  type?: string
-  placeholder?: string
-  validate?: () => boolean
-}>()
+  name: string;
+  label?: string;
+  modelValue: string;
+  inputClass?: string;
+  error?: string;
+  type?: string;
+  placeholder?: string;
+  validate?: () => boolean;
+}>();
 const model = defineModel('modelValue', {
   type: String,
   required: true,
-})
+});
 </script>
 
 <template>

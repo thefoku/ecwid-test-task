@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FullImageCover from '@/components/CoverComponents/FullImageCover.vue'
+import FullImageCover from '@/components/CoverComponents/FullImageCover.vue';
 </script>
 
 <template>

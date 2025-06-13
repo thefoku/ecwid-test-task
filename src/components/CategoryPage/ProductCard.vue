@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import Card from 'primevue/card'
-import Button from 'primevue/button'
-import router from '@/router'
-import { ref } from 'vue'
-import type { ProductCardItem } from '@/types/productCard'
-import { addToCart } from '@/services/checkoutService'
+import Card from 'primevue/card';
+import Button from 'primevue/button';
+import router from '@/router';
+import { ref } from 'vue';
+import type { ProductCardItem } from '@/types/productCard';
+import { addToCart } from '@/services/checkoutService';
 const props = defineProps<{
-  product: ProductCardItem
-}>()
+  product: ProductCardItem;
+}>();
 
-const buttonText = ref('Add to Bag')
+const buttonText = ref('Add to Bag');
 
 const addToBagOnClick = async (event: Event) => {
-  event.stopPropagation()
-  buttonText.value = '✓'
+  event.stopPropagation();
+  buttonText.value = '✓';
   setTimeout(() => {
-    buttonText.value = 'Add to Bag'
-  }, 1000)
-  addToCart(props.product.currentProduct)
-}
+    buttonText.value = 'Add to Bag';
+  }, 1000);
+  addToCart(props.product.currentProduct);
+};
 
 const onCardClick = (slug: string) => {
-  router.push(`/product/${slug}`)
-}
+  router.push(`/product/${slug}`);
+};
 </script>
 
 <template>

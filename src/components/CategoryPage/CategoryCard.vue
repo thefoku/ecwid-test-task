@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import router from '@/router'
+import { defineProps } from 'vue';
+import router from '@/router';
 
 const props = defineProps<{
-  image: string
-  name: string
-  slug: string
-}>()
+  image: string;
+  name: string;
+  slug: string;
+}>();
 
 const onCategoryClick = () => {
-  router.push(`/catalog/${props.slug}`)
-}
+  router.push(`/catalog/${props.slug}`);
+};
 </script>
 
 <template>

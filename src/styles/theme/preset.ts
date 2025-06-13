@@ -1,5 +1,5 @@
-import { definePreset } from '@primeuix/themes'
-import Material from '@primeuix/themes/material'
+import { definePreset } from '@primeuix/themes';
+import Material from '@primeuix/themes/material';
 
 export const MainPreset = definePreset(Material, {
   semantic: {
@@ -17,4 +17,4 @@ export const MainPreset = definePreset(Material, {
       950: '{purple.950}',
     },
   },
-})
+});

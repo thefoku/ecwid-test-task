@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { CartItem } from '@/types/cart'
-import { Button } from 'primevue'
-import { useCheckoutStore } from '@/stores/useCheckoutStore'
+import type { CartItem } from '@/types/cart';
+import { Button } from 'primevue';
+import { useCheckoutStore } from '@/stores/useCheckoutStore';
 
 const props = defineProps<{
-  product: CartItem
-}>()
+  product: CartItem;
+}>();
 
-const checkoutStore = useCheckoutStore()
+const checkoutStore = useCheckoutStore();
 
 const onDeleteButtonClick = (event: Event) => {
-  event.stopPropagation()
-  checkoutStore.removeItem(props.product.id)
-}
+  event.stopPropagation();
+  checkoutStore.removeItem(props.product.id);
+};
 </script>
 
 <template>

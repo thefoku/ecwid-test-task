@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Card } from 'primevue'
+import { Card } from 'primevue';
 </script>
 
 <template>

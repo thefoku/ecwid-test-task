@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Button } from 'primevue'
-import router, { ROUTER_PATHS } from '@/router'
+import { Button } from 'primevue';
+import router, { ROUTER_PATHS } from '@/router';
 
 const routeToCatalog = () => {
-  router.push(ROUTER_PATHS.CATALOG)
-}
+  router.push(ROUTER_PATHS.CATALOG);
+};
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import CartIconComponent from './CartIconComponent.vue'
-import { ROUTER_PATHS } from '@/router'
+import { RouterLink } from 'vue-router';
+import CartIconComponent from './CartIconComponent.vue';
+import { ROUTER_PATHS } from '@/router';
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Skeleton } from 'primevue'
+import { Skeleton } from 'primevue';
 </script>
 
 <template>

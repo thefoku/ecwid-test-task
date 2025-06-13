@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
 
 export const ROUTER_PATHS = {
   HOME: '/',
@@ -10,7 +10,7 @@ export const ROUTER_PATHS = {
   CHECKOUT: '/checkout',
   ORDER_CONFIRMATION: '/checkout/order-confirmation',
   NOT_FOUND: '/:pathMatch(.*)*',
-} as const
+} as const;
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,11 +62,11 @@ const router = createRouter({
       meta: { title: 'Page Not Found' },
     },
   ],
-})
+});
 
 router.beforeEach((to, _, next) => {
-  document.title = (to.meta.title as string) || 'Ecwid Test Task'
-  next()
-})
+  document.title = (to.meta.title as string) || 'Ecwid Test Task';
+  next();
+});
 
-export default router
+export default router;

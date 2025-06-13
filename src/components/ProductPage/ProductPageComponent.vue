@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import router from '@/router'
-import type { ProductCardItem } from '@/types/productCard'
-import { Button } from 'primevue'
-import { useProductStore } from '@/stores/useProductStore'
-import Skeleton from 'primevue/skeleton'
-import { addToCart } from '@/services/checkoutService'
-import { onMounted, ref } from 'vue'
+import router from '@/router';
+import type { ProductCardItem } from '@/types/productCard';
+import { Button } from 'primevue';
+import { useProductStore } from '@/stores/useProductStore';
+import Skeleton from 'primevue/skeleton';
+import { addToCart } from '@/services/checkoutService';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
-  product: ProductCardItem
-}>()
+  product: ProductCardItem;
+}>();
 
-const productStore = useProductStore()
+const productStore = useProductStore();
 
-const buttonText = ref('Add to Bag')
+const buttonText = ref('Add to Bag');
 
 function onAddToBagClick() {
-  buttonText.value = '✓'
+  buttonText.value = '✓';
   setTimeout(() => {
-    buttonText.value = 'Add to Bag'
-  }, 1000)
-  addToCart(props.product.currentProduct)
+    buttonText.value = 'Add to Bag';
+  }, 1000);
+  addToCart(props.product.currentProduct);
 }
 
 function goBack() {
-  router.back()
+  router.back();
 }
 
 onMounted(() => {
-  document.title = props.product.title
-})
+  document.title = props.product.title;
+});
 </script>
 
 <template>

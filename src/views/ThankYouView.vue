@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import CheckoutProducts from '@/components/CheckoutPage/CheckoutProducts.vue'
-import { Button } from 'primevue'
-import { useCheckoutStore } from '@/stores/useCheckoutStore'
-import { useEmailStore } from '@/stores/useUserStore'
-import router from '@/router'
-import { onMounted } from 'vue'
+import CheckoutProducts from '@/components/CheckoutPage/CheckoutProducts.vue';
+import { Button } from 'primevue';
+import { useCheckoutStore } from '@/stores/useCheckoutStore';
+import { useEmailStore } from '@/stores/useUserStore';
+import router from '@/router';
+import { onMounted } from 'vue';
 
-const checkoutStore = useCheckoutStore()
-const userStore = useEmailStore()
+const checkoutStore = useCheckoutStore();
+const userStore = useEmailStore();
 
 function goToCatalog() {
-  router.push('/catalog')
+  router.push('/catalog');
 }
 
 onMounted(() => {
-  console.log(checkoutStore.purchasedItems)
-})
+  console.log(checkoutStore.purchasedItems);
+});
 </script>
 
 <template>

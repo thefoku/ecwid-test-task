@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import CartIcon from '@/assets/img/shopping-bag.svg'
-import { computed } from 'vue'
-import { useCheckoutStore } from '@/stores/useCheckoutStore'
+import { RouterLink } from 'vue-router';
+import CartIcon from '@/assets/img/shopping-bag.svg';
+import { computed } from 'vue';
+import { useCheckoutStore } from '@/stores/useCheckoutStore';
 
-const checkoutStore = useCheckoutStore()
+const checkoutStore = useCheckoutStore();
 
-const cartItemsCount = computed(() => checkoutStore.getTotalQuantity())
+const cartItemsCount = computed(() => checkoutStore.getTotalQuantity());
 </script>
 
 <template>

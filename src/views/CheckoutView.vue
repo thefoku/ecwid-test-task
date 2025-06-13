@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import CheckoutProducts from '@/components/CheckoutPage/CheckoutProducts.vue'
-import InputField from '@/components/CheckoutPage/InputField.vue'
-import { Button } from 'primevue'
-import { useCheckoutStore } from '@/stores/useCheckoutStore'
-import { onMounted } from 'vue'
-import router from '@/router'
-import { useEmailStore } from '@/stores/useUserStore'
-import { validateEmail } from '@/utils/Validators/emailValidator'
+import CheckoutProducts from '@/components/CheckoutPage/CheckoutProducts.vue';
+import InputField from '@/components/CheckoutPage/InputField.vue';
+import { Button } from 'primevue';
+import { useCheckoutStore } from '@/stores/useCheckoutStore';
+import { onMounted } from 'vue';
+import router from '@/router';
+import { useEmailStore } from '@/stores/useUserStore';
+import { validateEmail } from '@/utils/Validators/emailValidator';
 
-const checkoutStore = useCheckoutStore()
-const userStore = useEmailStore()
+const checkoutStore = useCheckoutStore();
+const userStore = useEmailStore();
 
 function goBack() {
-  router.back()
+  router.back();
 }
 
 function goToCatalog() {
-  router.push('/catalog')
+  router.push('/catalog');
 }
 
 function onPlaceOrderClick() {
-  const isEmailValid = validateEmail()
+  const isEmailValid = validateEmail();
   if (isEmailValid) {
-    checkoutStore.placeOrder()
-    router.push('/checkout/order-confirmation')
+    checkoutStore.placeOrder();
+    router.push('/checkout/order-confirmation');
   }
 }
 
 onMounted(async () => {
-  await checkoutStore.initCartFromStorage()
-})
+  await checkoutStore.initCartFromStorage();
+});
 </script>
 
 <template>

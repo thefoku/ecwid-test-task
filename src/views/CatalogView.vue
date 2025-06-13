@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
-import { useCategoryStore } from '@/stores/useCategoryStore'
-import CategoryCard from '@/components/CategoryPage/CategoryCard.vue'
-import BreadCrumbs from '@/components/CategoryPage/BreadCrumbs.vue'
-import ProductCard from '@/components/CategoryPage/ProductCard.vue'
-import { useRoute } from 'vue-router'
-import { useProductStore } from '@/stores/useProductStore'
-import ProductCardSkeleton from '@/components/CategoryPage/ProductCardSkeleton.vue'
-import CategoryCardSkeleton from '@/components/CategoryPage/CategoryCardSkeleton.vue'
+import { onMounted, watch } from 'vue';
+import { useCategoryStore } from '@/stores/useCategoryStore';
+import CategoryCard from '@/components/CategoryPage/CategoryCard.vue';
+import BreadCrumbs from '@/components/CategoryPage/BreadCrumbs.vue';
+import ProductCard from '@/components/CategoryPage/ProductCard.vue';
+import { useRoute } from 'vue-router';
+import { useProductStore } from '@/stores/useProductStore';
+import ProductCardSkeleton from '@/components/CategoryPage/ProductCardSkeleton.vue';
+import CategoryCardSkeleton from '@/components/CategoryPage/CategoryCardSkeleton.vue';
 
-const categoryStore = useCategoryStore()
-const productStore = useProductStore()
+const categoryStore = useCategoryStore();
+const productStore = useProductStore();
 
-const route = useRoute()
+const route = useRoute();
 
 watch(
   () => route.params.categorySlug,
   async (newSlug) => {
-    document.title = categoryStore.getCategoryNameBySlug(newSlug as string)
-    categoryStore.categories = categoryStore.getCategoriesBySlug(newSlug as string) ?? []
-    await productStore.loadProducts(newSlug as string)
+    document.title = categoryStore.getCategoryNameBySlug(newSlug as string);
+    categoryStore.categories = categoryStore.getCategoriesBySlug(newSlug as string) ?? [];
+    await productStore.loadProducts(newSlug as string);
   },
-)
+);
 
 onMounted(async () => {
-  await categoryStore.loadCategories()
+  await categoryStore.loadCategories();
   if (route.params.categorySlug) {
     document.title =
-      categoryStore.getCategoryBySlug(route.params.categorySlug as string)?.name || ''
+      categoryStore.getCategoryBySlug(route.params.categorySlug as string)?.name || '';
     categoryStore.categories =
-      categoryStore.getCategoriesBySlug(route.params.categorySlug as string) ?? []
+      categoryStore.getCategoriesBySlug(route.params.categorySlug as string) ?? [];
   }
-  await productStore.loadProducts(route.params.categorySlug as string)
-})
+  await productStore.loadProducts(route.params.categorySlug as string);
+});
 </script>
 
 <template>
