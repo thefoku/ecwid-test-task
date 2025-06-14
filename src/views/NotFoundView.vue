@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import router from '@/router';
 import { Button } from 'primevue';
+import { goBack } from '@/utils/RouterMethods/routerMethods';
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import { Button } from 'primevue';
     <Button
       class="button-to-home w-full product-card-button p-button-raised p-button-success"
       outlined
-      @click="router.back()"
+      @click="goBack"
       >Go Back</Button
     >
   </div>

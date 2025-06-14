@@ -1,14 +1,14 @@
 import { z } from 'zod';
-import { useEmailStore } from '@/stores/useUserStore';
+import { useEmailStore } from '@/stores/useEmailStore';
 
-const userStore = useEmailStore();
+const emailStore = useEmailStore();
 
 export const emailSchema = z.string().email({
   message: 'Enter valid email address',
 });
 
 export function validateEmail(): boolean {
-  const result = emailSchema.safeParse(userStore.email);
-  userStore.emailError = result.success ? '' : result.error.errors[0].message;
+  const result = emailSchema.safeParse(emailStore.email);
+  emailStore.emailError = result.success ? '' : result.error.errors[0].message;
   return result.success;
 }

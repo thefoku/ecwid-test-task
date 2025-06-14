@@ -3,6 +3,7 @@ import type { CartItem } from '@/types/cart';
 import { Button } from 'primevue';
 import { useCheckoutStore } from '@/stores/useCheckoutStore';
 import { ROUTER_PATHS } from '@/router';
+import { onCardClick } from '@/utils/RouterMethods/routerMethods';
 
 const props = defineProps<{
   product: CartItem;
@@ -13,12 +14,14 @@ const checkoutStore = useCheckoutStore();
 const onDeleteButtonClick = () => {
   checkoutStore.removeItem(props.product.id);
 };
-
-// todo: add onCardClick method to prevent page reload
 </script>
 
 <template>
-  <a :href="`${ROUTER_PATHS.PRODUCT}/${product.slug}`" class="product-cart-link">
+  <a
+    :href="`${ROUTER_PATHS.PRODUCT}/${product.slug}`"
+    class="product-cart-link"
+    @click.prevent="onCardClick(product.slug)"
+  >
     <div class="product-cart-wrapper">
       <div class="product-cart-delete-button">
         <Button

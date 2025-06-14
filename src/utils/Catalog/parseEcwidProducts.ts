@@ -1,7 +1,7 @@
 import type { EcwidProduct } from '@/types/ecwid';
 import type { ProductCardItem } from '@/types/productCard';
 
-// TODO: add additional method for product page
+// TODO: refactor to defaultFormattedPrice
 export function parseProductCards(rawProducts: EcwidProduct[]): ProductCardItem[] {
   return rawProducts.map((product) => {
     const formattedDiscount =

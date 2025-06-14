@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import Card from 'primevue/card';
 import Button from 'primevue/button';
-import router, { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/router';
 import { ref } from 'vue';
 import type { ProductCardItem } from '@/types/productCard';
 import { addToCart } from '@/services/checkoutService';
-import { showCheckmarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
+import { showCheckMarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
+import { onCardClick } from '@/utils/RouterMethods/routerMethods';
+
 const props = defineProps<{
   product: ProductCardItem;
 }>();
@@ -13,13 +15,8 @@ const props = defineProps<{
 const buttonText = ref(DEFAULT_ADD_TO_BAG_TEXT);
 
 const addToBagOnClick = async () => {
-  showCheckmarkOnClick(buttonText);
+  showCheckMarkOnClick(buttonText);
   addToCart(props.product.currentProduct);
-};
-
-const onCardClick = (slug: string) => {
-  const productSlug = `${ROUTER_PATHS.PRODUCT}/${slug}`;
-  router.push(`${productSlug}`);
 };
 </script>
 

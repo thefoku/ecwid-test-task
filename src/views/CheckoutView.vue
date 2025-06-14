@@ -5,17 +5,14 @@ import { Button } from 'primevue';
 import { useCheckoutStore } from '@/stores/useCheckoutStore';
 import { onMounted } from 'vue';
 import router from '@/router';
-import { useEmailStore } from '@/stores/useUserStore';
+import { useEmailStore } from '@/stores/useEmailStore';
 import { validateEmail } from '@/utils/Validators/emailValidator';
 import { useCheckoutProductValues } from '@/composables/useCheckoutProductValues';
+import { goBack } from '@/utils/RouterMethods/routerMethods';
 
 const checkoutStore = useCheckoutStore();
 const userStore = useEmailStore();
 const { totalPrice } = useCheckoutProductValues();
-
-function goBack() {
-  router.back();
-}
 
 function goToCatalog() {
   router.push('/catalog');

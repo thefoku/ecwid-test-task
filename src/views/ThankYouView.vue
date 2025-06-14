@@ -2,20 +2,11 @@
 import CheckoutProducts from '@/components/CheckoutPage/CheckoutProducts.vue';
 import { Button } from 'primevue';
 import { useCheckoutStore } from '@/stores/useCheckoutStore';
-import { useEmailStore } from '@/stores/useUserStore';
-import router from '@/router';
-import { onMounted } from 'vue';
+import { useEmailStore } from '@/stores/useEmailStore';
+import { goToCatalog } from '@/utils/RouterMethods/routerMethods';
 
 const checkoutStore = useCheckoutStore();
-const userStore = useEmailStore();
-
-function goToCatalog() {
-  router.push('/catalog');
-}
-
-onMounted(() => {
-  console.log(checkoutStore.purchasedItems);
-});
+const emailStore = useEmailStore();
 </script>
 
 <template>
@@ -24,7 +15,7 @@ onMounted(() => {
     <p>Your order has been successfully placed. We appreciate your business!</p>
     <p>
       We will contact you at
-      <a :href="`mailto:${userStore.email}`" class="thankyou-page-email">{{ userStore.email }}</a>
+      <a :href="`mailto:${emailStore.email}`" class="thankyou-page-email">{{ emailStore.email }}</a>
       soon!
     </p>
 

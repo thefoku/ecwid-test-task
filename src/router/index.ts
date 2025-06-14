@@ -11,6 +11,7 @@ export const ROUTER_PATHS = {
   CHECKOUT: '/checkout',
   ORDER_CONFIRMATION: '/checkout/order-confirmation',
   NOT_FOUND: '/:pathMatch(.*)*',
+  NOT_FOUND_404: '/404',
 } as const;
 
 const router = createRouter({

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import router from '@/router';
 import type { ProductCardItem } from '@/types/productCard';
 import { Button } from 'primevue';
 import { useProductStore } from '@/stores/useProductStore';
 import { addToCart } from '@/services/checkoutService';
 import { onMounted, ref, watch } from 'vue';
 import InputField from '../CheckoutPage/InputField.vue';
-import { showCheckmarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
+import { showCheckMarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
+import { goBack } from '@/utils/RouterMethods/routerMethods';
 
 const DEFAULT_QUANTITY = '1';
 
@@ -21,12 +21,8 @@ const buttonText = ref(DEFAULT_ADD_TO_BAG_TEXT);
 const quantity = ref(DEFAULT_QUANTITY);
 
 function onAddToBagClick() {
-  showCheckmarkOnClick(buttonText);
+  showCheckMarkOnClick(buttonText);
   addToCart(props.product.currentProduct, Number(quantity.value));
-}
-// todo: move 'goBack' to utils
-function goBack() {
-  router.back();
 }
 
 function validateQuantity() {

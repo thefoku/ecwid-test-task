@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { Button } from 'primevue';
-import router, { ROUTER_PATHS } from '@/router';
-
-const routeToCatalog = () => {
-  router.push(ROUTER_PATHS.CATALOG);
-};
+import { goToCatalog } from '@/utils/RouterMethods/routerMethods';
 </script>
 
 <template>
@@ -15,7 +11,7 @@ const routeToCatalog = () => {
       raised
       severity="secondary"
       class="w-full product-card-button"
-      @click="routeToCatalog"
+      @click="goToCatalog"
     />
   </div>
 </template>

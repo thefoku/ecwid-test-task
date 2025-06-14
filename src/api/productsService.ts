@@ -1,12 +1,10 @@
 import type { EcwidProductsResponse } from '@/types/ecwid';
-
-const storeId = import.meta.env.VITE_ECWID_STORE_ID;
-const TOKEN = import.meta.env.VITE_ECWID_CLIENT_SECRET;
+import { STORE_ID, TOKEN } from './envConsts';
 
 export function useProducts() {
   const fetchProducts = async (categoryId?: number): Promise<EcwidProductsResponse> => {
     const categoryIdParam = categoryId ? `?category=${categoryId}` : '';
-    const url = `https://app.ecwid.com/api/v3/${storeId}/products${categoryIdParam}`;
+    const url = `https://app.ecwid.com/api/v3/${STORE_ID}/products${categoryIdParam}`;
     try {
       const response = await fetch(url, {
         headers: {

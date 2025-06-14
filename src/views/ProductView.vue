@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import ProductPage from '@/components/ProductPage/ProductPageComponent.vue';
 import ProductPageSkeleton from '@/components/ProductPage/ProductPageSkeleton.vue';
-import router from '@/router';
 import { useProductStore } from '@/stores/useProductStore';
 import { onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { ROUTER_PATHS } from '@/router';
+import { goToNotFound } from '@/utils/RouterMethods/routerMethods';
 
 const productStore = useProductStore();
 const route = useRoute();
@@ -15,7 +14,7 @@ watch(
   async (newSlug) => {
     await productStore.loadProductBySlug(newSlug as string);
     if (!productStore.currentProduct) {
-      router.push(ROUTER_PATHS.NOT_FOUND);
+      goToNotFound();
     }
   },
 );
@@ -23,7 +22,7 @@ watch(
 onMounted(async () => {
   await productStore.loadProductBySlug(route.params.productSlug as string);
   if (!productStore.currentProduct) {
-    router.push(ROUTER_PATHS.NOT_FOUND);
+    goToNotFound();
   }
 });
 </script>
