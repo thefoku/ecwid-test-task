@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import CartIcon from '@/assets/img/shopping-bag.svg';
-import { computed } from 'vue';
-import { useCheckoutStore } from '@/stores/useCheckoutStore';
+import { useCheckoutProductValues } from '@/composables/useCheckoutProductValues';
+import { ROUTER_PATHS } from '@/router';
 
-const checkoutStore = useCheckoutStore();
-
-const cartItemsCount = computed(() => checkoutStore.getTotalQuantity());
+const { totalQuantity } = useCheckoutProductValues();
 </script>
 
 <template>
-  <RouterLink to="/checkout" class="cart-link">
+  <RouterLink :to="ROUTER_PATHS.CHECKOUT" class="cart-link">
     <div class="cart-counter">
-      <span>{{ cartItemsCount }}</span>
+      <span>{{ totalQuantity }}</span>
     </div>
     <CartIcon fill="#fff" class="cart-icon" />
   </RouterLink>

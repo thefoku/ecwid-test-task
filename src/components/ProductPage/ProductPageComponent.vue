@@ -3,10 +3,12 @@ import router from '@/router';
 import type { ProductCardItem } from '@/types/productCard';
 import { Button } from 'primevue';
 import { useProductStore } from '@/stores/useProductStore';
-import Skeleton from 'primevue/skeleton';
 import { addToCart } from '@/services/checkoutService';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import InputField from '../CheckoutPage/InputField.vue';
+import { showCheckmarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
+
+const DEFAULT_QUANTITY = '1';
 
 const props = defineProps<{
   product: ProductCardItem;
@@ -14,29 +16,33 @@ const props = defineProps<{
 
 const productStore = useProductStore();
 
-const buttonText = ref('Add to Bag');
+const buttonText = ref(DEFAULT_ADD_TO_BAG_TEXT);
 
-const quantity = ref('1');
+const quantity = ref(DEFAULT_QUANTITY);
 
 function onAddToBagClick() {
-  buttonText.value = '✓';
-  setTimeout(() => {
-    buttonText.value = 'Add to Bag';
-  }, 1000);
+  showCheckmarkOnClick(buttonText);
   addToCart(props.product.currentProduct, Number(quantity.value));
 }
-
+// todo: move 'goBack' to utils
 function goBack() {
   router.back();
 }
 
 function validateQuantity() {
   if (Number(quantity.value) < 1) {
-    quantity.value = '1';
+    quantity.value = DEFAULT_QUANTITY;
     return false;
   }
   return true;
 }
+
+watch(
+  () => props.product.title,
+  () => {
+    document.title = props.product.title;
+  },
+);
 
 onMounted(() => {
   document.title = props.product.title;
@@ -45,19 +51,18 @@ onMounted(() => {
 
 <template>
   <div class="product-back-button">
-    <Button outlined class="p-button-raised p-button-success" label="< Back" @click="goBack" />
+    <Button class="p-button-raised p-button-success" outlined label="< Back" @click="goBack" />
   </div>
   <div class="product-page-wrapper">
     <div class="product-image">
-      <Skeleton width="40rem" height="55rem" class="mb-4" v-if="productStore.loading" />
       <img v-if="!productStore.loading" :src="product.imageURL" :alt="product.title" />
     </div>
     <div class="product-details">
       <h1 class="product-name">{{ product.title }}</h1>
       <div class="product-price">
-        <span v-if="product.discountedPrice" class="discounted-price">{{
-          product.discountedPrice
-        }}</span>
+        <span v-if="product.discountedPrice" class="discounted-price">
+          {{ product.discountedPrice }}
+        </span>
         <span class="price">{{ product.price }}</span>
       </div>
       <div class="product-description-wrapper" v-if="product.description">
@@ -68,7 +73,7 @@ onMounted(() => {
         <InputField
           label="Quantity:"
           name="product-quantity"
-          v-model:modelValue="quantity"
+          v-model="quantity"
           placeholder="Qty"
           type="number"
           :min="1"

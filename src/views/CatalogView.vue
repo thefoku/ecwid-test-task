@@ -26,8 +26,7 @@ watch(
 onMounted(async () => {
   await categoryStore.loadCategories();
   if (route.params.categorySlug) {
-    document.title =
-      categoryStore.getCategoryBySlug(route.params.categorySlug as string)?.name || '';
+    document.title = categoryStore.getCategoryNameBySlug(route.params.categorySlug as string);
     categoryStore.categories =
       categoryStore.getCategoriesBySlug(route.params.categorySlug as string) ?? [];
   }

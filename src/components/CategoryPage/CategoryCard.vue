@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import router from '@/router';
+import { ROUTER_PATHS } from '@/router';
 
 const props = defineProps<{
   image: string;
@@ -9,7 +10,8 @@ const props = defineProps<{
 }>();
 
 const onCategoryClick = () => {
-  router.push(`/catalog/${props.slug}`);
+  const categorySlug = `${ROUTER_PATHS.CATALOG}/${props.slug}`;
+  router.push(categorySlug);
 };
 </script>
 

@@ -1,27 +1,25 @@
 <script setup lang="ts">
 import Card from 'primevue/card';
 import Button from 'primevue/button';
-import router from '@/router';
+import router, { ROUTER_PATHS } from '@/router';
 import { ref } from 'vue';
 import type { ProductCardItem } from '@/types/productCard';
 import { addToCart } from '@/services/checkoutService';
+import { showCheckmarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
 const props = defineProps<{
   product: ProductCardItem;
 }>();
 
-const buttonText = ref('Add to Bag');
+const buttonText = ref(DEFAULT_ADD_TO_BAG_TEXT);
 
-const addToBagOnClick = async (event: Event) => {
-  event.stopPropagation();
-  buttonText.value = '✓';
-  setTimeout(() => {
-    buttonText.value = 'Add to Bag';
-  }, 1000);
+const addToBagOnClick = async () => {
+  showCheckmarkOnClick(buttonText);
   addToCart(props.product.currentProduct);
 };
 
 const onCardClick = (slug: string) => {
-  router.push(`/product/${slug}`);
+  const productSlug = `${ROUTER_PATHS.PRODUCT}/${slug}`;
+  router.push(`${productSlug}`);
 };
 </script>
 
@@ -29,7 +27,7 @@ const onCardClick = (slug: string) => {
   <div class="product-card-wrapper">
     <a
       class="product-card-link"
-      :href="`/product/${product.slug}`"
+      :href="`${ROUTER_PATHS.PRODUCT}/${product.slug}`"
       @click.prevent="onCardClick(product.slug)"
     >
       <Card style="overflow: hidden">
@@ -53,7 +51,7 @@ const onCardClick = (slug: string) => {
               :label="buttonText"
               outlined
               class="w-full product-card-button p-button-raised p-button-success"
-              @click.prevent="addToBagOnClick"
+              @click.prevent.stop="addToBagOnClick"
             />
           </div>
         </template>

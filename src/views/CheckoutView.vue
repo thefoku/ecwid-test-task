@@ -7,9 +7,11 @@ import { onMounted } from 'vue';
 import router from '@/router';
 import { useEmailStore } from '@/stores/useUserStore';
 import { validateEmail } from '@/utils/Validators/emailValidator';
+import { useCheckoutProductValues } from '@/composables/useCheckoutProductValues';
 
 const checkoutStore = useCheckoutStore();
 const userStore = useEmailStore();
+const { totalPrice } = useCheckoutProductValues();
 
 function goBack() {
   router.back();
@@ -45,7 +47,7 @@ onMounted(async () => {
         :product="product"
       />
       <div class="checkout-products-list-total">
-        <p class="checkout-total">TOTAL: €{{ checkoutStore.getTotalPrice() }}</p>
+        <p class="checkout-total">TOTAL: €{{ totalPrice }}</p>
       </div>
     </div>
     <div class="checkout-information">

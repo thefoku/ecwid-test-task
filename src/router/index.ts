@@ -6,7 +6,8 @@ export const ROUTER_PATHS = {
   ABOUT: '/about',
   CATALOG: '/catalog',
   CATEGORY: '/catalog/:categorySlug',
-  PRODUCT: '/product/:productSlug',
+  PRODUCT: '/product',
+  PRODUCT_SLUG: '/product/:productSlug',
   CHECKOUT: '/checkout',
   ORDER_CONFIRMATION: '/checkout/order-confirmation',
   NOT_FOUND: '/:pathMatch(.*)*',
@@ -39,7 +40,7 @@ const router = createRouter({
       component: () => import('../views/CatalogView.vue'),
     },
     {
-      path: ROUTER_PATHS.PRODUCT,
+      path: ROUTER_PATHS.PRODUCT_SLUG,
       name: 'product',
       component: () => import('../views/ProductView.vue'),
     },
