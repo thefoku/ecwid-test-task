@@ -7,6 +7,7 @@ import { onMounted, ref, watch } from 'vue';
 import InputField from '../CheckoutPage/InputField.vue';
 import { showCheckMarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
 import { goBack } from '@/utils/RouterMethods/routerMethods';
+import { isOnDiscount } from '@/utils/Product/IsOnDiscount';
 
 const DEFAULT_QUANTITY = '1';
 
@@ -56,7 +57,7 @@ onMounted(() => {
     <div class="product-details">
       <h1 class="product-name">{{ product.title }}</h1>
       <div class="product-price">
-        <span v-if="product.discountedPrice" class="discounted-price">
+        <span v-if="isOnDiscount(product)" class="discounted-price">
           {{ product.discountedPrice }}
         </span>
         <span class="price">{{ product.price }}</span>

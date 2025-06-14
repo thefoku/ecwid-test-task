@@ -7,6 +7,7 @@ import type { ProductCardItem } from '@/types/productCard';
 import { addToCart } from '@/services/checkoutService';
 import { showCheckMarkOnClick, DEFAULT_ADD_TO_BAG_TEXT } from '@/utils/Product/addToBagButtonUtil';
 import { onCardClick } from '@/utils/RouterMethods/routerMethods';
+import { isOnDiscount } from '@/utils/Product/IsOnDiscount';
 
 const props = defineProps<{
   product: ProductCardItem;
@@ -30,15 +31,15 @@ const addToBagOnClick = async () => {
       <Card style="overflow: hidden">
         <template #header>
           <img :alt="product.title" :src="product.imageURL" />
-          <span v-if="product.discountedPrice" class="p-card-ribbon">ON SALE</span>
+          <span v-if="isOnDiscount(product)" class="p-card-ribbon">ON SALE</span>
         </template>
         <template #title> {{ product.title }}</template>
         <template #subtitle>
-          <span v-if="product.discountedPrice" :class="{ highlighted: product.discountedPrice }">{{
+          <span v-if="isOnDiscount(product)" :class="{ highlighted: isOnDiscount(product) }">{{
             product.discountedPrice
           }}</span>
           <span> </span>
-          <span class="price" :class="{ 'line-through grey': product.discountedPrice }">{{
+          <span class="price" :class="{ 'line-through grey': isOnDiscount(product) }">{{
             product.price
           }}</span>
         </template>
