@@ -4,25 +4,20 @@ import InputField from '@/components/CheckoutPage/InputField.vue';
 import { Button } from 'primevue';
 import { useCheckoutStore } from '@/stores/useCheckoutStore';
 import { onMounted } from 'vue';
-import router from '@/router';
 import { useEmailStore } from '@/stores/useEmailStore';
 import { validateEmail } from '@/utils/Validators/emailValidator';
 import { useCheckoutProductValues } from '@/composables/useCheckoutProductValues';
-import { goBack } from '@/utils/RouterMethods/routerMethods';
+import { goBack, goToCatalog, goToOrderConfirmation } from '@/utils/RouterMethods/routerMethods';
 
 const checkoutStore = useCheckoutStore();
 const userStore = useEmailStore();
 const { totalPrice } = useCheckoutProductValues();
 
-function goToCatalog() {
-  router.push('/catalog');
-}
-
 function onPlaceOrderClick() {
   const isEmailValid = validateEmail();
   if (isEmailValid) {
+    goToOrderConfirmation();
     checkoutStore.placeOrder();
-    router.push('/checkout/order-confirmation');
   }
 }
 

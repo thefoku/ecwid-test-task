@@ -11,3 +11,5 @@ export const onCardClick = (slug: string) => {
 export const goToCatalog = () => router.push(ROUTER_PATHS.CATALOG);
 
 export const goToNotFound = () => router.push(ROUTER_PATHS.NOT_FOUND_404);
+
+export const goToOrderConfirmation = () => router.push(ROUTER_PATHS.ORDER_CONFIRMATION);
