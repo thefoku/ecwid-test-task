@@ -30,6 +30,11 @@ header {
   border-bottom: 1px solid var(--soft-green);
 }
 
+footer {
+  width: 100%;
+  margin-top: auto;
+}
+
 a,
 .green {
   text-decoration: none;
